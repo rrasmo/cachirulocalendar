@@ -1,0 +1,10 @@
+arrr
+{% if events %}
+    <ul>
+    {% for event in events %}
+        <li>{{ event.name }} {{ event.start_date.strftime("%d/%m/%y") }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No events.</p>
+{% endif %}
