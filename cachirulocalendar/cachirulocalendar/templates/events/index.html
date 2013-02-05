@@ -1,9 +1,35 @@
 {% if events %}
-    <ul>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start date</th>
+      <th>Place</th>
+      <th>Community</th>
+    </tr>
     {% for event in events %}
-        <li>{{ event.name }} {{ event.start_date }}</li>
+      <tr>
+        <td>
+          {% if event.url %}
+            <a href="{{ event.url }}">{{ event.name }}</a>
+          {% else %}
+            {{ event.name }}
+          {% endif %}
+        </td>
+        <td>{{ event.description|default:"" }}</td>
+        <td>{{ event.start_date|date:"SHORT_DATETIME_FORMAT" }}</td>
+        <td>{{ event.place|default:"" }}</td>
+        <td>
+          {% if event.community.url %}
+            <a href="{{ event.community.url }}">{{ event.community.name }}</a>
+          {% else %}
+            {{ event.community.name }}
+          {% endif %}
+        </td>
+      </tr>
     {% endfor %}
-    </ul>
+  </table>
 {% else %}
-    <p>No events.</p>
+  <p>No events.</p>
 {% endif %}
+
