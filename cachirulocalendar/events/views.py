@@ -1,10 +1,11 @@
 from django.shortcuts import render_to_response
 from django import forms
 from django.template import RequestContext
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from events.models import Event, Community
 from datetime import datetime
 import vobject
+import scrappers
 
 
 def home(request):
@@ -51,5 +52,9 @@ def home(request):
     else:
         return render_to_response('events/index.html', {'events': events, 'form': form}, context_instance = RequestContext(request))
 
+
+def scrap(request):
+    scrappers.scrap_zgzactiva()
+    return HttpResponseRedirect('/')
 
 

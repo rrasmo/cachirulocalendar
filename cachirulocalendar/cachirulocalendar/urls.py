@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('events.views',
     url(r'^$', 'home', name='home'),
+    url(r'^scrap/$', 'scrap', name='scrap'),
 )
 
 urlpatterns += patterns('',
